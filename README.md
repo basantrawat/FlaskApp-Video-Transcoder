@@ -1,9 +1,8 @@
 # Flask App - Video Transcoder
 
-This Flask App is more than just a Video Transcoder.
-It can be used to convert video from nearly any format to any other, resize video dimensions, cut a clip out of any video, merge videos, and mirror the original video in x or y direction. All these operations can be performed in bulk by selecting multiple video files.
+This Flask App is more than just a Video Transcoder. It can be used to convert video from nearly any format to any other, resize video dimensions, cut a clip out of any video file, merge video files, and mirror the original video in x or y axis. All these operations can be performed in bulk by selecting multiple video files.
 
-# How to Run this App
+# Running the App
 
 ## To Install all Requirements
 Move to app directory, and then perform :   
