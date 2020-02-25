@@ -12,11 +12,34 @@ app.config['UPLOAD_FOLDER'] = "F:\\PROGRAMMING\\Python\\MediaEditing\\videoEditi
 def index():
     return render_template('index.html') 
 
+@app.route('/format-conversion', methods=['GET','POST'])
+def format_conversion():
+    if(request.method=='POST'):
+        file_names = request.files.getlist('filename[]')
+        file_format = request.form.get('file-format')
+
+        '''UPLOADING THE FILE TO A SPECIFIC LOCATION'''
+        for file_name in file_names:
+            file_name.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file_name.filename)))
+
+        for file_name in file_names:
+            myvideo = VideoFileClip("app/uploadFolder/"+secure_filename(file_name.filename))
+            name = secure_filename(file_name.filename)[:-4]+"-NewFormat"+file_format
+            myvideo.write_videofile(f"app/output_files/{name}", codec="libx264")
+        
+        '''RETURNING THE PAGE WITH URL LINK OF Converted FILES'''
+        return render_template('format-conversion.html', msg="Merged Successfully", file_path="#")     
+    else:
+        return render_template('format-conversion.html', msg="", file_path="")
+
+
 @app.route('/resize-video', methods=['GET','POST'])
 def resizing_video():
     if(request.method=='POST'):
         file_names = request.files.getlist('filename[]')
         changed_width = int(request.form.get('width'))
+        file_format = request.form.get('file-format')
+
         '''UPLOADING THE FILE TO A SPECIFIC LOCATION'''
         for file_name in file_names:
             file_name.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file_name.filename)))
@@ -24,7 +47,7 @@ def resizing_video():
         for file_name in file_names:
             myvideo = VideoFileClip("app/uploadFolder/"+secure_filename(file_name.filename))
             resized_video = myvideo.resize(width=changed_width)
-            name = secure_filename(file_name.filename)[:-4]+"-bulkResizing"+".mp4"
+            name = secure_filename(file_name.filename)[:-4]+"-Resized"+file_format
             resized_video.write_videofile(f"app/output_files/{name}", codec="libx264")
         
         '''RETURNING THE PAGE WITH URL LINK OF Converted FILES'''
@@ -44,7 +67,7 @@ def merge_videos():
 
         '''MERGING THE UPLOADED FILES'''
         clips = []
-        for i, file_name in enumerate(file_names): 
+        for file_name in file_names: 
             clips.append(VideoFileClip("app/uploadFolder/" + secure_filename(file_name.filename)))
 
         # video = CompositeVideoClip([clip1,clip2])  #CompositVideoClip class provide more flexibilty 

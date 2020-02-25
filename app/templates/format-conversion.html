@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+   <!-- Main Content -->
+   <div class="container-fluid"  style="padding:20px; background-color: rgb(221, 221, 220); position: absolute; top: 58px;">
+      <div class="row justify-content-center align-items-center">     
+         <div class="col-sm-6 col-lg-6">
+            <form action="/format-conversion" method="post" enctype='multipart/form-data'>
+               <div class="form-group">
+                  <label><b>Select Video Files for Format Change</b></label>
+                  <input type="file" class="form-control-file" name="filename[]" accept="video/mp4,video/x-m4v,video/*" multiple></br>
+                  <label for="sel1">Select Format of Output File:</label>
+                  <select name="file-format" class="form-control" id="sel1">
+                     <option value=".mp4" selected>MP4</option>
+                     <option value=".mov">MOV</option>
+                     <option value=".mkv">MKV</option>
+                     <option value=".wmv">WMV</option>
+                     <option value=".avi">AVI</option>
+                     <option value=".flv">FLV</option>
+                  </select>
+                    
+               </div>
+               <button type="submit" class="btn btn-primary">Submit</button>
+            </form> 
+         </div>
+     
+         <div class="col-sm-4 col-lg-4">
+            {% if msg!="" and file_path!="" %}
+            <a href="{{file_path}}" style="color:rgb(36, 170, 53); text-decoration:none; font-weight:bold;"><b>{{msg}}</b></a>
+            {% endif %}
+         </div>
+   </div>
+</div>
+
+{% endblock %}
