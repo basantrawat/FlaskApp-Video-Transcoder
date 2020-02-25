@@ -1,11 +1,17 @@
-# Flask App - Using PyPDF2
+# Flask App - Video Transcoder
 
-PyPDF2 is a PDF library which can be used to split, merge, crop, and transform a PDF file. It can also be used to add custom data, viewing options, and passwords to PDF files.  
-PyPDF2 python library can also be used to retrieve text and metadata from PDFs.
+This Flask App is more than just a Video Transcoder.
+It can be used to convert video from nearly any format to any other, resize video dimensions, cut a clip out of any video, merge videos, and mirror the original video in x or y direction. All these operations can be performed in bulk by selecting multiple video files.
 
+# How to Run this App
 
-## How to Run the App
+## To Install all Requirements
+Move to app directory, and then perform :   
 
-`>>python app.py`  
+`pip install -r requirements.txt`
+
+Come back to base directory which is `videoEditing` and run the command :    
+
+`flask run`
 
 This will run this Flask App on server at `http://127.0.0.1:5000/`
