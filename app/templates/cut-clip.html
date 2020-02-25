@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+
+<!-- Main Content -->
+<div class="container-fluid"  style="padding:20px; background-color: rgb(221, 221, 220); position: absolute; top: 58px;">
+    <div class="row justify-content-center align-items-center">     
+        <div class="col-sm-6 col-lg-6">
+          <form action="/cut-clip" method="post" enctype='multipart/form-data'>
+             <div class="form-group">
+                <label><b>Select Video File to Trim a Clip From</b></label>
+                <input type="file" class="form-control-file" name="filename" accept="video/mp4,video/x-m4v,video/*" required/></br>
+                Time From(in Sec.): <input type="number" class="form-control-file" name="time_from" required/>
+                Time Upto(in Sec.): <input type="number" class="form-control-file" name="time_to" required/>
+                
+             </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+          </form> 
+       </div>
+   
+       <div class="col-sm-4 col-lg-4">
+            <a href="{{file_path}}"><b>{{msg}}</b></a>
+       </div>
+    </div>
+</div>
+
+{% endblock %}

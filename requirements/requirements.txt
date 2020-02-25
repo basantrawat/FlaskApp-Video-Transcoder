@@ -1,0 +1,7 @@
+moviepy==1.0.1
+Werkzeug==0.16.1
+Flask==1.1.1
+
+
+# To Install all Requirements
+# pip install -r requirements.txt
